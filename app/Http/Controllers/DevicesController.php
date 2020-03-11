@@ -47,7 +47,6 @@ class DevicesController extends Controller
           $device->name          = $params['name'];
           $device->save();
         } catch (\Exception $exception) {
-            dd($exception);
             return view('device pages/create_device', ['products' => $products, 'categories' => $categories, 'error' => 1]);
         }
 
@@ -64,12 +63,10 @@ class DevicesController extends Controller
           }
           if(count($parts) == 0) {
               $device->delete();
-              dd($parts, $params);
               return view('device pages/create_device', ['products' => $products, 'categories' => $categories, 'error' => 2]);
           }
         } catch (\Exception $exception) {
           $device->delete();
-          dd($parts, $exception, $params);
           return view('device pages/create_device', ['products' => $products, 'categories' => $categories, 'error' => 2]);
         }
 

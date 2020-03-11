@@ -8,7 +8,7 @@
             </div>
             <div class="card shadow">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('create_product') }}" class="was-validated">
+                    <form method="POST" action="{{ route('create_product') }}" class="was-validated" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form" for="category">Category</label>
-                            <input type="text" id="category" class="form-control" name="category" value="" autocomplete="" autofocus placeholder="Product category">
+                            <input type="text" id="category" class="form-control" name="newCategory" value="" autocomplete="" autofocus placeholder="Product category, Only fill if new category is required">
                         </div>
                         <div class="form-group">
                             <label for="category">Category: </label>

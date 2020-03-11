@@ -7,9 +7,12 @@
             <div class="card-header">
                 <h1 class="name">Create an device</h1>
             </div>
+            @if(@isset($error))
+              <input id="error" type="hidden" value="{{ $error }}">
+            @endif()
             <div class="card shadow">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('create_product') }}" class="was-validated">
+                    <form method="POST" action="{{ route('create_device') }}" class="was-validated" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -41,6 +44,9 @@
                                 </div>
                             </div>
                         </div>
+                        <table id="part-list">
+                          <th>Parts</th>
+                        </table>
                         <button type="submit" class="btn btn-hawkeye-add">Add</button>
                     </form>
                     @if(@isset($categories))

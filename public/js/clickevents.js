@@ -32,7 +32,7 @@ $(document).ready(function(){
         let category = $(this).attr('name');
 
         let input = document.createElement('input');
-        let li = document.createElement('li');
+        let li = document.createElement('tr');
         let p = document.createElement('p');
         let lable = document.createElement('lable');
         let div = document.createElement('div');
@@ -42,6 +42,7 @@ $(document).ready(function(){
         let number_input = document.createElement('input');
         let part_list = document.getElementById('part-list');
 
+        console.log(part_list);
         $(trash_image_wrapper).addClass('remove-item')
         $(p).text(text)
         $(p).val(category)
@@ -49,13 +50,12 @@ $(document).ready(function(){
         $(i).addClass("fas fa-trash");
         $(div).addClass('input-wrapper');
 
-        $(lable).text('quantity :');
-        $(lable).attr('for', 'number-' + current_count.toString());
-
         $(number_input).val(value);
         $(number_input).attr('name', 'amount-' + current_count.toString());
         $(number_input).attr('type', 'number');
         $(number_input).attr('id', 'number-'+ current_count.toString());
+        $(number_input).attr('placeholder', 'quantity')
+        $(number_input).addClass('form-control')
 
         $(number_input).val('-');
 
