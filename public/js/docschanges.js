@@ -2,16 +2,16 @@ $(function() {
   let error = $('#error').val()
   console.log(error)
   if(error == 1) {
-    $('.container-home').append(generateAlert('One or more params not given'))
+    $('.py-4').append(generateAlert('One or more params not given'))
   }
   if(error == 2) {
-    $('.container-home').append(generateAlert('No items were selected'))
+    $('.py-4').append(generateAlert('No items were selected'))
   }
   if(error == 3) {
-    $('.container-home').append(generateAlert('No status was defined'))
+    $('.py-4').append(generateAlert('No status was defined'))
   }
 
   if(error == 6) {
-    $('.container-home').append(generateAlert('Name or title already exists'))
+    $('.py-4').append(generateAlert('Name or title already exists'))
   }
 })

@@ -26,7 +26,7 @@ class OrderController extends Controller
     $status = Status::all();
     $params = $request->all();
     $order  = Order::whereId($id)->first();
-    
+
     $order->users()->detach();
     $order->users()->attach($params['user_id']);
     $order->status_id = $params['status_id'];
@@ -44,7 +44,7 @@ class OrderController extends Controller
 
   public function create(Request $request) {
 
-    $param_whitelist = ['title', 'due', 'description', 'Status', 'newStatus'];
+    $param_whitelist = ['title', 'due', 'description', 'status', 'newStatus', '_token'];
     $status          = Status::all();
     $devices         = Device::all();
     $params          = $request->all();
@@ -56,7 +56,7 @@ class OrderController extends Controller
 
     try {
       if ($request->newStatus === null) {
-          $status_request = Status::whereId($params['Status'])->first();
+          $status_request = Status::whereId($params['status'])->first();
       } else {
           $status_request = Status::create([
               'name' => $params['newStatus'],
@@ -74,10 +74,9 @@ class OrderController extends Controller
       $order->status_id   = $status_request->id;
       $order->save();
     } catch (\Exception $exception) {
-        dd($exception, $status_request);
         return view('order pages/create_order', ['devices' => $devices, 'status' => $status, 'error' => 1]);
     }
-
+    $list = [];
     try {
       foreach ($params as $key => $value) {
         if (! in_array($key, $param_whitelist)) {
@@ -86,12 +85,13 @@ class OrderController extends Controller
              $amount = $value;
           }
           else {
+              array_push($list, $amount);
               $parts[$value] = ['quantity' => $amount];
+
           }
         }
       }
     } catch (\Exception $exception) {
-        dd($exception, $params);
         return view('order pages/create_order', ['devices' => $devices, 'status' => $status, 'error' => 2]);
     }
 

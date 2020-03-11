@@ -15,12 +15,9 @@ class CreateDevicesTable extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
            $table->increments('id');
-           $table->unsignedInteger('status_id');
-           $table->foreign('status_id')->references(['id'])->on('statuses')->onUpdate('cascade')->onDelete('cascade');
            $table->string('name', 200);
            $table->string('image', 200);
            $table->string('description', 500);
-           $table->string('delivery_time', 200);
            $table->timestamps();
         });
     }

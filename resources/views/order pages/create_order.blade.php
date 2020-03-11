@@ -7,6 +7,9 @@
             <h1 class="title">Create an order</h1>
         </div>
         <div class="card shadow">
+            @if(@isset($error))
+            <input id="error" type="hidden" name="" value="{{ $error }}">
+            @endif()
             <div class="card-body">
                 <form method="POST" action="{{ route('create_order') }}" class="was-validated">
                     @csrf
@@ -43,6 +46,10 @@
                             @endif
                         </select>
                     </div>
+                    <table id="part-list">
+                      <th>Devices</th>
+                    </table>
+
                     <button type="submit" class="btn btn-hawkeye-add">Add</button>
                 </form>
                 @foreach($devices as $device)

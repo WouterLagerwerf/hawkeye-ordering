@@ -32,7 +32,7 @@ class HomeController extends Controller
 
         // get all devices and products for authenticated use
         $orders = Order::with('devices', 'status')->get();
-
+        dd($orders);
         return view('home', ['orders' => $orders]);
     }
 

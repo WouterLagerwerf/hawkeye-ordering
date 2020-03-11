@@ -21,6 +21,10 @@ class CreateProductsTable extends Migration
             $table->string('store', 200);
             $table->string('amount', 200);
             $table->string('delivery_time', 200);
+
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')->references(['id'])->on('categories')->onUpdate('cascade')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

@@ -51,6 +51,7 @@ class ProductsController extends Controller
                 'name' => $params['newCategory'],
             ]);
         }
+
         $image  = $request->file('image');
         $name=time().$image->getClientOriginalName();
         $ext = $image->extension();
@@ -60,7 +61,7 @@ class ProductsController extends Controller
 
         $product = Product::firstOrCreate([
             'name' => $params['name'],
-            'delivery_time' => $params['delivery_time'],
+            'delivery_time' => $params['delivery'],
             'category_id' => $category->id,
             'image' => $filePath,
             'amount' => $params['amount'],

@@ -18,6 +18,10 @@ class CreateOrdersTable extends Migration
             $table->string('title');
             $table->string('description', 600);
             $table->string('due');
+
+            $table->unsignedInteger('status_id');
+            $table->foreign('status_id')->references(['id'])->on('status')->onUpdate('cascade')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
