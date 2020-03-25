@@ -17,23 +17,13 @@ class CreatePartTable extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('product_id');
-            $table->foreign('product_id')->references(['id'])->on('products')->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreign('product_id')->references(['id'])->on('products')->onUpdate('cascade')->onDelete('cascade');
 
             $table->unsignedInteger('device_id');
-            $table->foreign('device_id')->references(['id'])->on('devices')->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreign('device_id')->references(['id'])->on('devices')->onUpdate('cascade')->onDelete('cascade');
 
             $table->decimal('amount', 6, 2);
             $table->timestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('part');
     }
 }
